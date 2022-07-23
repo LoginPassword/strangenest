@@ -13,6 +13,7 @@ import { UsersService } from 'src/users/users.service';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { LoginResponseDto } from './dto/login-response.dto';
+import { RefreshDto } from './dto/refresh.dto';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -36,5 +37,13 @@ export class AuthController {
   @ApiUnauthorizedResponse({ description: 'Email or password is incorrect' })
   async login(@Request() req: Express.Request) {
     return this.authService.login(req.user);
+  }
+
+  @Post('/refresh')
+  @ApiCreatedResponse({ type: LoginResponseDto })
+  @ApiBadRequestResponse({ description: 'Bad request' })
+  @ApiUnauthorizedResponse({ description: 'Invalid token' })
+  async refresh(@Body() refreshDto: RefreshDto) {
+    return this.authService.refresh(refreshDto);
   }
 }

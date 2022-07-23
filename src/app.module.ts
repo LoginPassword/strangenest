@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { ApiModule } from './api/api.module';
 import { EventsModule } from './events/events.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { RefreshToken } from './auth/refresh-token.model';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { ScheduleModule } from '@nestjs/schedule';
         username: configService.get('POSTGRES_USER', 'postgres'),
         password: configService.get('POSTGRES_PASSWORD', 'postgres'),
         database: configService.get('POSTGRES_DB', 'postgres'),
-        models: [User],
+        models: [User, RefreshToken],
         logging: false,
       }),
     }),

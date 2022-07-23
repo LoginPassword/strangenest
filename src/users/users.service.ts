@@ -23,6 +23,10 @@ export class UsersService {
     return (await User.create({ email, role, passwordHash })).get();
   }
 
+  getById(id: number) {
+    return User.findOne({ where: { id } });
+  }
+
   getByEmail(email: string) {
     return User.findOne({ where: { email } });
   }
