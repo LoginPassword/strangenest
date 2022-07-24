@@ -1,8 +1,8 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
-import { plainToClass, plainToInstance } from 'class-transformer';
-import { validate, validateOrReject } from 'class-validator';
+import { plainToClass } from 'class-transformer';
+import { validateOrReject } from 'class-validator';
 import { EventsGateway } from 'src/events/events.gateway';
 import { ResponseFromApiDto } from './dto/response-from-api.dto';
 
